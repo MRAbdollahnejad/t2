@@ -1,9 +1,6 @@
-import HibernateUtil.HibernateUtil;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
 
 
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -11,7 +8,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManager entityManager = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        final EntityManagerFactory ENTITY_MANAGER_FACTORY
+                = Persistence.createEntityManagerFactory("Item");
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Item> cr = cb.createQuery(Item.class);
